@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <div class="form1">
+        <form method="post" action="/ejercicio1">
+            <h2>Calculo de compras</h2>
+            <label for="nombre">Ingresa tu nombre</label><br>
+            <input type="text" id="nombre" name="nombre" aria-required="true" required><br>
+            <label for="edad">Ingresa tu edad</label><br>
+            <input type="text" id="edad" name="edad" aria-required="true" required><br>
+            <label for="tarros">Ingresa la cantidad de tarros de pintura a comprar</label><br>
+            <input type="text" id="tarros" name="tarros" aria-required="true" required><br><br>
+            <input type="submit" class="btn" value="Calcular">
+        </form>
+
+        {% if nombre is defined and edad is defined and tarros is defined %}
+            <h3>Detalle de la compra:</h3>
+            <h5>Nombre del cliente: {{ nombre }}</h5>
+            <h5>Total sin descuento: ${{ total}}</h5>
+            
+            {% if edad >= 18 and edad <= 30 %}
+                <h5>Descuento aplicado (15%): ${{ total - descuento1 }} </h5>
+                <h5>Total a pagar es de: ${{ (descuento1)}}</h5>
+            {% elif edad > 30 %}
+                <h5>Descuento aplicado (25%): ${{ total - descuento2}}</h5>
+                <h5>Total a pagar es de: ${{ (descuento2)}}</h5>
+            {% else %}
+                <h5>No hay descuento aplicado.</h5>
+                <h5>Total a pagar es de: ${{ total }}</h5>
+            {% endif %}
+        {% endif %}
+        <p><a href="{{ url_for('home') }}">Volver al menú</a></p>
+    </div>
+</body>
+</html>

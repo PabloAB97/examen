@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <div class="form2">
+        <form method="post" action="/ejercicio2">
+            <h2>Inicio de sesión</h2>
+            <label for="nombre2">Ingresa tu nombre</label><br>
+            <input type="text" id="nombre2" name="nombre2" required><br>
+            <label for="contraseña">Ingresa tu contraseña</label><br>
+            <input type="password" id="contraseña" name="contraseña" required><br><br>
+            <input type="submit" class="btn" value="Verificar">
+        </form>
+        {% if nombre2 is defined and contraseña is defined %}
+            {% if nombre2 == 'juan' and contraseña == 'admin' %}
+                <p>Bienvenido administrador juan</p>
+            {% elif nombre2 == 'pepe' and contraseña == 'user' %}
+                <p>Bienvenido usuario pepe</p>
+            {% else %}
+                <p>Usuario o contraseña incorrectos</p>
+            {% endif %}
+        {% endif %}
+        <p><a href="{{ url_for('home') }}">Volver al menú</a></p>
+
+    </div>
+    
+</body>
+</html>
